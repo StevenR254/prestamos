@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!--<!-- para empezar a trabajar con thymeleaf siempre es necesaria la etiqueta "xmlns" -->
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!--para empezar a trabajar con thymeleaf siempre es necesaria la etiqueta "xmlns Tambien para el caso de este login la estiqueta de Security" -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
 
@@ -42,15 +42,24 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Bienvenido</h1>
                                     </div>
-                                    <form action="/login/postlogin" method="post" class="user">
+                                    <!--Estos divs me permitiran validar si se presenta algun error durante la autenticacion-->
+                                    <div th:if="${param.error}">
+                                        Invalid Username and Password.
+                                    </div>
+                                    <div th:if="${param.logout}">
+                                        You have been logged out.
+                                    </div>
+                                    <form th:action="@{/login/login}" method="post" class="user">
                                         <div class="form-group">
-                                            <input required type="email" name="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                            <input required type="email" name="username" class="form-control form-control-user"
+                                                aria-describedby="emailHelp"
                                                 placeholder="Ingresa tu correo">
                                         </div>
+                                        <!--los nombres de los campos segun mi base de datos email y password deben cambiarse por
+                                            norma de Spring Security llamandose ahora username y password-->
                                         <div class="form-group">
                                             <input required type="password" name="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Ingresa tu contraseña">
+                                                placeholder="Ingresa tu contraseña">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -70,6 +79,14 @@
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>-->
                                     </form>
+                                    <div sec:authorize="!isAuthenticated()">
+                                        <a th:href="@{/oauth2/authorization/auth0}" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-fw"></i> Login con OAUTH
+                                        </a>
+                                    </div>
+                                    <div sec:authorize="isAuthenticated()">
+                                        <p>Te encuentras logueado</p>
+                                    </div>
                                     <!--<hr>-->
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Olvido su contraseña?</a>

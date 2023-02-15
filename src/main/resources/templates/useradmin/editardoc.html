@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- para empezar a trabajar con thymeleaf siempre es necesaria la etiqueta "xmlns" -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{master}">
+
+    <head>
+    </head>
+
+<body layout:fragment="content">
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Editar documentos</h1>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Por favor edite los campos.
+                            </div>
+                            <div class="card-body">
+                                <form action="/admin/posteditdoc" method="post">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <input th:value="${misdocumentos.nombre}" name="nombre" type="text" class="form-control"
+                                                   placeholder="Numero de documento">
+                                        </div>
+                                        <input th:value="${misdocumentos.id}" type="hidden" name="id">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        Editar Documento
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </body>
+
+</html>

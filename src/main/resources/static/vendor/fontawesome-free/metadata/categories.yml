@@ -219,7 +219,7 @@ automotive:
     - motorcycle
     - oil-can
     - shuttle-van
-    - tachometer-alt
+    - money-bill
     - taxi
     - trailer
     - truck
@@ -1869,7 +1869,7 @@ objects:
     - sun
     - tablet
     - tablet-alt
-    - tachometer-alt
+    - money-bill
     - tag
     - tags
     - taxi

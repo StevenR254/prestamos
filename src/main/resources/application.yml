@@ -1,0 +1,18 @@
+# src/main/resources/application.yml
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          auth0:
+            client-id: uno8Ng5mTrULGVFUG777AhsQtHIUiHXe
+            #Este Client Secret sale de la opcion Settings dentro de la plataforma de OAUTH
+            client-secret: icgFk5LJ9zO_sRBsDcl7JH5RbTjedYiinCgn44XV_NcR6h9n-aFjufnRAlyaDEDt
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          auth0:
+            # trailing slash is important!
+            issuer-uri: https://dev-cejab031us8kk0ez.us.auth0.com/

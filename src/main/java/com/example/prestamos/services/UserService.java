@@ -1,11 +1,15 @@
 package com.example.prestamos.services;
 
+import com.example.prestamos.dto.UsuariosDTO;
 import com.example.prestamos.entities.User;
 import com.example.prestamos.repository.IUserRepository;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service 
@@ -19,8 +23,8 @@ public class UserService {
     
     Response response = new Response();
     
-    public ArrayList<User> selectAll(){
-        return (ArrayList<User>) this.iUserRepository.findAll();
+    public List<UsuariosDTO> selectAll(){
+        return this.iUserRepository.consultarUsuariosConDocumento();
     }
     
     public Response createUser(User user){
@@ -35,6 +39,13 @@ public class UserService {
             response.setMessage("Contraseña Incorrecta");
             return response;
         }
+
+        /* IMPORTANTE La libreria BCryptPasswordEncoder nos sirve para encriptar contraseñas y es un paso importante para implementar o Spring
+        * security o OAUTH*/
+
+        BCryptPasswordEncoder encrypt = new BCryptPasswordEncoder();
+        user.setPassword(encrypt.encode(user.getPassword()));
+
         this.iUserRepository.save(user);
         response.setCode(200);
         response.setMessage("Usuario Registrado exitosamente");
@@ -47,6 +58,11 @@ public class UserService {
             return buscar.get();
         }
         return null;
+    }
+
+    public User selectByUserName(String username){
+        User user = this.iUserRepository.findByUserName(username);
+        return user;
     }
     
     public Response deleteUser(int id){

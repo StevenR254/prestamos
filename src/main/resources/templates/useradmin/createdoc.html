@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--para empezar a trabajar con thymeleaf siempre es necesaria la etiqueta "xmlns" -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{master}">
+
+    <head>
+    </head>
+
+    <body layout:fragment="content">
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Registrar nuevo Tipo de Documentp</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            registre los campos del nuevo tipo de documento.
+                        </div>
+                        <div class="card-body">
+                            <form action="/admin/postcreatedoc" method="post" class="user">
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <input required name="nombre" type="text" class="form-control"
+                                               placeholder="Nombre documento">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Registrar Documento
+                                </button>
+                                <hr>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

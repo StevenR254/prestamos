@@ -1,11 +1,14 @@
 package com.example.prestamos.Controller;
 
 
+import com.example.prestamos.dto.UsuariosDTO;
 import com.example.prestamos.entities.TipoDocumento;
 import com.example.prestamos.entities.User;
 import com.example.prestamos.services.Response;
 import com.example.prestamos.services.UserService;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +34,7 @@ public class IndexController {
     
     
     @RequestMapping("getusuarios")
-    public ArrayList<User> getUsuarios(){
+    public List<UsuariosDTO> getUsuarios(){
         return this.userService.selectAll();
     }
     

@@ -5,7 +5,7 @@ import com.example.prestamos.entities.User;
 import com.example.prestamos.services.Response;
 import com.example.prestamos.services.TipoDocumentoService;
 import com.example.prestamos.services.UserService;
-import dto.RegistroDTO;
+import com.example.prestamos.dto.RegistroDTO;
 import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("login")
-public class LoginController {
+public class LoginController extends BaseController{
     
     UserService userService;
     TipoDocumentoService tipoDocumentoService;
@@ -42,9 +42,10 @@ public class LoginController {
     }
     
     //Este metodo es el que valida el logueo de usuario en base de datos
+    //Ojo si implementamos Spring Security este metodo deja de funcionar ya que la clase WebSecurityConfig ya existe.
     @PostMapping("postlogin")
     public RedirectView postlogin(RegistroDTO registroDTO){
-        
+        System.out.println("Hola entre al postlogin");
         User user = new User();
         user.setEmail(registroDTO.getEmail());
         user.setPassword(registroDTO.getPassword());
@@ -58,7 +59,7 @@ public class LoginController {
     }
     
     @PostMapping("postregistro")
-    public RedirectView postRegistro(RegistroDTO registroDTO){
+    public RedirectView postregistro(RegistroDTO registroDTO, Model model){
         
         if(!registroDTO.getPassword().equals(registroDTO.getValidarPassword())){
             System.out.println("La contraseña no coincide");
@@ -78,10 +79,9 @@ public class LoginController {
         user.setTipoDocumento(registroDTO.getTipoDocumento());
         
         Response response = this.userService.createUser(user);
-        System.out.println(response.getMessage());
         if(response.getCode() == 200){
-            System.out.println(response.getCode());
-            return new RedirectView("/inicio");
+
+            return new RedirectView("/login/login");
         }
         return new RedirectView("/login/error");
     }

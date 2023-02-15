@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("tipodocumento")
-public class DocumentoController {
+public class DocumentoController extends BaseController {
     
     private TipoDocumentoService tipoDocumentoService;
     
@@ -28,6 +28,7 @@ public class DocumentoController {
         ArrayList<TipoDocumento> documentosBD = this.tipoDocumentoService.selectAll();
         //Armo el modelo que se le pasa a Thymeleaf
         documentos.addAttribute("misdocumentos", documentosBD);
+        documentos.addAttribute("usuarioautenticado", seguridad());
         return "documento/index";
     }
     

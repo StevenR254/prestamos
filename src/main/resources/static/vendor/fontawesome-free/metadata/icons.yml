@@ -18500,7 +18500,7 @@ tablets:
     - solid
   unicode: f490
   voted: false
-tachometer-alt:
+money-bill:
   changes:
     - 5.0.0
     - 5.2.0

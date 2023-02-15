@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- para empezar a trabajar con thymeleaf siempre es necesaria la etiqueta "xmlns" -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{master}">
+
+  <head>
+  </head>
+
+  <body layout:fragment="content">
+     <div class="container-fluid">
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+       <h1 class="h3 mb-0 text-gray-800">Documentos</h1>
+       <div class="col-auto"><a class="btn btn-danger" href="/admin/createdoc">Crear nuevo Documento</a></div>
+     </div>
+      <div class="row">
+        <table class="table table-bordered dataTable">
+          <thead>
+          <tr>
+            <th>Nombre Tipo Documento</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="tipdoc : ${misdocumentos}">
+            <td th:text="${tipdoc.nombre}"></td>
+            <td>
+              <a class="btn btn-primary" th:href="@{/admin/editdoc/{postid}(postid=${tipdoc.id})}">Editar</a>
+              <a class="btn btn-danger" th:href="@{/admin/deletedoc/{postid}(postid=${tipdoc.id})}">Eliminar</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+     </div>
+  </body>
+
+</html>

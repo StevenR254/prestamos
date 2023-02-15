@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- para empezar a trabajar con thymeleaf siempre es necesaria la etiqueta "xmlns" -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{master}">
+
+  <head>
+  </head>
+
+  <body layout:fragment="content">
+    <div class="container-fluid">
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Solicitud Prestamo</h1>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <label>Seleccione el tipo de prestamo que necesita</label>
+          <select class="form-control">
+            <option>Seleccione....</option>
+          </select>
+        </div>
+        <div class="col-sm-4">
+          <label>Por favor coloque el monto solicitado</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-sm-4">
+          <label>Cantidad de cuotas</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <hr>
+      <h3 class="h3 mb-0 text-gray-800">Información del codeudor</h3>
+      <div class="row">
+        <div class="col-sm-4">
+          <label>Nombre del codeudor</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-sm-4">
+          <label>Celular del Codeudor</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <hr>
+      <div class="row" style="text-align:center">
+        <button class="btn btn-primary">Radicar solicitud de prestamo</button>
+      </div>
+    </div>
+  </body>
+
+</html>
